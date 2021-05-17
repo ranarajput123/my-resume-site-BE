@@ -48,20 +48,13 @@ const MyPersonalDetailsSchema = new Schema(
     languages: [
       {
         _id: false,
-        lang: String,
-        proficiency: String,
+        lang: { type: String, required: true },
+        proficiency: { type: String, required: true },
       },
     ],
   },
   { timestamps: true }
 );
-MyPersonalDetailsSchema.methods.isCorrectPassword = async function(password) {
-  return await argon2.verify(
-    (await myPersonalDetails.findOne({ email: this.email }, "+password"))
-      .password,
-    password
-  );
-};
 const MyPersonalDetails = mongoose.model(
   "MyPersonalDetails",
   MyPersonalDetailsSchema

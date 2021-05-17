@@ -1,10 +1,9 @@
 import { BadRequestError } from "../../error_handling/userFacingErrors";
 import {
-    hasRequiredFields,
   haveNoMaliciousField,
   isAlphabets,
   isAlphabetsWithOptionalSpaces,
-  isEmail
+  isEmail,
 } from "./generalValidations";
 
 const allowedUpdateFields = [
@@ -23,7 +22,7 @@ export const updateValidator = (req, res, next) => {
     isAlphabetsWithOptionalSpaces(req.body.current_country, "Current Country");
   }
   if (req.body.current_city) {
-    isAlphabets(req.body.current_city, "Current City");
+    isAlphabetsWithOptionalSpaces(req.body.current_city, "Current City");
   }
   if (req.body.email) {
     isEmail(req.body.email);
@@ -42,11 +41,10 @@ const isLanguagesArray = (langArr) => {
       Object.keys(langArr.reduce((prev, curr) => ({ ...prev, ...curr }), {})),
       ["lang", "proficiency"]
     )
-    && hasRequiredFields(Object.keys(langArr.reduce((prev, curr) => ({ ...prev, ...curr }), {})),['lang','proficiency'])
   ) {
     return true;
   }
   throw new BadRequestError(
-    'The languages array needs to be in format like [{"lang":<Language>,"proficiency":<EXCELLENT or Good etc>}]'
+    "The languages array needs to be in format like [{'lang':<Language>,'proficiency':<EXCELLENT or Good etc>}]"
   );
 };

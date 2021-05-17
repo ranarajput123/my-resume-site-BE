@@ -6,7 +6,6 @@ const isEmail = (email) => {
   throw new BadRequestError("Please provide correct Email");
 };
 const isStrongPassword = (password) => {
-  console.log(validator.isStrongPassword);
   if (validator.isStrongPassword(password)) return true;
   throw new BadRequestError("Please set a strong Password");
 };

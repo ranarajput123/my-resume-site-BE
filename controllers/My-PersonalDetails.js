@@ -10,7 +10,7 @@ export const getMyPersonalDetails = async () => {
   return myPersonalDetails;
 };
 export const updateMyPersonalDetails = async (updateObject) => {
-  const myPersonalDetails = await _My_PersonalDetails.findOne();
+  const myPersonalDetails = await getMyPersonalDetails()
   myPersonalDetails.set(updateObject);
   return await myPersonalDetails.save();
 };

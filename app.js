@@ -27,6 +27,7 @@ app.get("/", (req, res) => res.send({ message: "WORKING" }));
 
 app.use('/visitor',routes.visitorRoutes)
 app.use('/my-personal-details',routes.myPersonalDetailsRoutes)
+app.use('/my-work-experiences',routes.myWorkExperienceRoutes)
 
 // Error Handler
 app.use(handleErrors);

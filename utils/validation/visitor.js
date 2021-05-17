@@ -8,6 +8,7 @@ import {
 } from "./generalValidations";
 const allowedUpdateFields = ["name", "company", "email"];
 const signUpValidator = (req, res, next) => {
+  haveNoMaliciousField(Object.keys(req.body), [...allowedUpdateFields,'password',]);
   isNotEmpty("Email", req.body.email);
   isNotEmpty("Password", req.body.password);
   isNotEmpty("Name", req.body.name);
@@ -21,6 +22,7 @@ const signUpValidator = (req, res, next) => {
 };
 
 const signInValidator = (req, res, next) => {
+  haveNoMaliciousField(Object.keys(req.body), ['email','password']);
   isNotEmpty("Email", req.body.email);
   isNotEmpty("Password", req.body.password);
   isEmail(req.body.email);

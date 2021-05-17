@@ -4,15 +4,14 @@ import getMongooseError from "./mongoose-errorHandler";
 import { ReE } from "../response";
 
 export default function handleErrors(err, req, res, next) {
-  // console.log(err instanceof mongooseErrors)
+  console.log(err)
   if (err instanceof MongooseError) {
     const { message, statusCode } = getMongooseError(err);
     return ReE(res, message, null, statusCode);
   } else if (err instanceof ApplicationError) {
-      console.log(err.email)
     return ReE(res, err.message, null, err.statusCode || 500);
   }
-  return ReE(res,err.message,null,500)
+  return ReE(res, err.message, null, 500);
   // if (err instanceof NotFoundError) {
   // res.sendStatus(err.statusCode);
 
