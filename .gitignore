@@ -1,0 +1,13 @@
+node_modules
+.env
+.history
+keys/private.pem
+src/test/
+# kubernetes/hlp-mvp-dev-env.yaml
+# kubernetes/hlp-mvp-prod.yaml
+# kubernetes/hlp-new-prod.yaml
+# /kubernetes/
+*.DS_Store
+.vscode
+*.pem
+*.log
