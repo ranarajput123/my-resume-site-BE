@@ -1,28 +1,27 @@
 import { Router } from "express";
-import {
-  createMyPersonalDetails,
-  getMyPersonalDetails,
-  updateMyPersonalDetails,
-} from "../controllers/My-PersonalDetails";
+import * as controllers from "../controllers/Client_Porjects";
 import { RETURN_CODE } from "../utils/constants";
 import { withAuth } from "../utils/middlewares/authentication";
 import { ReS } from "../utils/response";
-import { updateValidator } from "../utils/validation/myPersonalDetails";
+import {
+  updateValidator,
+  createValidator,
+} from "../utils/validation/clientProject";
 import * as rolesAndPermissions from "../roles_permissions/roles";
 import { hasPermission } from "../utils/middlewares/permissions";
 const router = Router();
 
 router.get(
   "/",
-  hasPermission(rolesAndPermissions.getPersonalDetails),
   withAuth,
+  hasPermission(rolesAndPermissions.getClientProject),
   async (req, res, next) => {
     try {
-      const myPDs = await getMyPersonalDetails();
+      const myClientProjects = await controllers.getMyClientProjects();
       return ReS(
         res,
-        "Sarmad's Personal Details Fetched",
-        myPDs,
+        "Sarmad's Client Projects Fetched",
+        myClientProjects,
         RETURN_CODE.SUCCESS
       );
     } catch (err) {
@@ -33,15 +32,15 @@ router.get(
 router.patch(
   "/",
   withAuth,
-  hasPermission(rolesAndPermissions.updatePersonalDetails),
+  hasPermission(rolesAndPermissions.updateClientProject),
   updateValidator,
   async (req, res, next) => {
     try {
-      const myPersonalDetails = await updateMyPersonalDetails(req.body);
+      const clientProject = await controllers.updateMyClientProject(req.body);
       return ReS(
         res,
-        "Sarmad's Personal Details Updated",
-        myPersonalDetails,
+        "Sarmad's Client Project Updated",
+        clientProject,
         RETURN_CODE.SUCCESS
       );
     } catch (err) {
@@ -53,14 +52,15 @@ router.patch(
 router.post(
   "/",
   withAuth,
-  hasPermission(rolesAndPermissions.createPersonalDetails),
+  hasPermission(rolesAndPermissions.createClientProject),
+  createValidator,
   async (req, res, next) => {
     try {
-      const myPersonalDetails = await createMyPersonalDetails(req.body);
+      const myClientProject = await controllers.createMyClientProject(req.body);
       return ReS(
         res,
-        "Sarmad Personal Details Created and Replaced",
-        myPersonalDetails,
+        "Sarmad Client Project Created ",
+        myClientProject,
         RETURN_CODE.SUCCESS
       );
     } catch (err) {

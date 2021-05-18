@@ -14,6 +14,8 @@ import {
   updateValidator,
 } from "../utils/validation/visitor";
 import { withAuth } from "../utils/middlewares/authentication";
+import { hasPermission } from "../utils/middlewares/permissions";
+import * as rolesAndPermissions from "../roles_permissions/roles";
 const router = Router();
 
 router.post("/signup", signUpValidator, async (req, res, next) => {
@@ -48,39 +50,60 @@ router.post("/signin", signInValidator, async (req, res, next) => {
   }
 });
 
-router.get("/", withAuth, async (req, res, next) => {
-  try {
-    const { id } = req;
-    const visitor = await getVisitorByID(id);
-    return ReS(res, "Visitor Profile Fetched", visitor, RETURN_CODE.SUCCESS);
-  } catch (err) {
-    next(err);
+router.get(
+  "/",
+  withAuth,
+  hasPermission(rolesAndPermissions.getVisitor),
+  async (req, res, next) => {
+    try {
+      const { id } = req;
+      const visitor = await getVisitorByID(id);
+      return ReS(res, "Visitor Profile Fetched", visitor, RETURN_CODE.SUCCESS);
+    } catch (err) {
+      next(err);
+    }
   }
-});
-router.get("/:id", withAuth, async (req, res, next) => {
-  try {
-    const visitor = await getVisitorByID(req.params.id);
-    return ReS(res, "Visitor Profile Fetched", visitor, RETURN_CODE.SUCCESS);
-  } catch (err) {
-    next(err);
+);
+router.get(
+  "/:id",
+  withAuth,
+  hasPermission(rolesAndPermissions.getVisitorByID),
+  async (req, res, next) => {
+    try {
+      const visitor = await getVisitorByID(req.params.id);
+      return ReS(res, "Visitor Profile Fetched", visitor, RETURN_CODE.SUCCESS);
+    } catch (err) {
+      next(err);
+    }
   }
-});
-router.get("/all", withAuth, async (req, res, next) => {
-  try {
-    const visitors = await getAll();
-    return ReS(res, "Visitor Profile Fetched", visitors, RETURN_CODE.SUCCESS);
-  } catch (err) {
-    next(err);
+);
+router.get(
+  "/all",
+  withAuth,
+  hasPermission(rolesAndPermissions.getAllVisitors),
+  async (req, res, next) => {
+    try {
+      const visitors = await getAll();
+      return ReS(res, "Visitor Profile Fetched", visitors, RETURN_CODE.SUCCESS);
+    } catch (err) {
+      next(err);
+    }
   }
-});
-router.patch("/", withAuth, updateValidator, async (req, res, next) => {
-  try {
-    const { id } = req;
-    const visitor = await updateVisitorByID(id, req.body);
-    return ReS(res, "Visitor Updated", visitor, RETURN_CODE.SUCCESS);
-  } catch (err) {
-    next(err);
+);
+router.patch(
+  "/",
+  withAuth,
+  hasPermission(rolesAndPermissions.updateVisitor),
+  updateValidator,
+  async (req, res, next) => {
+    try {
+      const { id } = req;
+      const visitor = await updateVisitorByID(id, req.body);
+      return ReS(res, "Visitor Updated", visitor, RETURN_CODE.SUCCESS);
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
 export default router;

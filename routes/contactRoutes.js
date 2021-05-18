@@ -1,28 +1,24 @@
 import { Router } from "express";
-import {
-  createMyPersonalDetails,
-  getMyPersonalDetails,
-  updateMyPersonalDetails,
-} from "../controllers/My-PersonalDetails";
+import * as controllers from "../controllers/Contact";
 import { RETURN_CODE } from "../utils/constants";
 import { withAuth } from "../utils/middlewares/authentication";
 import { ReS } from "../utils/response";
-import { updateValidator } from "../utils/validation/myPersonalDetails";
+import { updateValidator, createValidator } from "../utils/validation/contact";
 import * as rolesAndPermissions from "../roles_permissions/roles";
 import { hasPermission } from "../utils/middlewares/permissions";
 const router = Router();
 
 router.get(
   "/",
-  hasPermission(rolesAndPermissions.getPersonalDetails),
   withAuth,
+  hasPermission(rolesAndPermissions.getContacts),
   async (req, res, next) => {
     try {
-      const myPDs = await getMyPersonalDetails();
+      const myContactsDetail = await controllers.getMyContactDetails();
       return ReS(
         res,
-        "Sarmad's Personal Details Fetched",
-        myPDs,
+        "Sarmad's Contact Details Fetched",
+        myContactsDetail,
         RETURN_CODE.SUCCESS
       );
     } catch (err) {
@@ -33,15 +29,15 @@ router.get(
 router.patch(
   "/",
   withAuth,
-  hasPermission(rolesAndPermissions.updatePersonalDetails),
+  hasPermission(rolesAndPermissions.updateContact),
   updateValidator,
   async (req, res, next) => {
     try {
-      const myPersonalDetails = await updateMyPersonalDetails(req.body);
+      const contactDetail = await controllers.updateMyContactDetails(req.body);
       return ReS(
         res,
-        "Sarmad's Personal Details Updated",
-        myPersonalDetails,
+        "Sarmad's Contact detail Updated",
+        contactDetail,
         RETURN_CODE.SUCCESS
       );
     } catch (err) {
@@ -53,14 +49,15 @@ router.patch(
 router.post(
   "/",
   withAuth,
-  hasPermission(rolesAndPermissions.createPersonalDetails),
+  hasPermission(rolesAndPermissions.createContact),
+  createValidator,
   async (req, res, next) => {
     try {
-      const myPersonalDetails = await createMyPersonalDetails(req.body);
+      const myContactDetail = await controllers.createMyContact(req.body);
       return ReS(
         res,
-        "Sarmad Personal Details Created and Replaced",
-        myPersonalDetails,
+        "Sarmad Contact Detail Created ",
+        myContactDetail,
         RETURN_CODE.SUCCESS
       );
     } catch (err) {

@@ -43,5 +43,17 @@ class NotFoundError extends UserFacingError {
     return RETURN_CODE.NOT_FOUND;
   }
 }
+class ForbiddenError extends UserFacingError {
+  constructor(message, options = {}) {
+    super(message);
 
-export { BadRequestError, NotFoundError, UnauthorizedError };
+    for (const [key, value] of Object.entries(options)) {
+      this[key] = value;
+    }
+  }
+  get statusCode() {
+    return RETURN_CODE.FORBIDDEN;
+  }
+}
+
+export { ForbiddenError,BadRequestError, NotFoundError, UnauthorizedError };
