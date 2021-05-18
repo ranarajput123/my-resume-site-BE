@@ -11,3 +11,5 @@ src/test/
 .vscode
 *.pem
 *.log
+dist
+./dist
