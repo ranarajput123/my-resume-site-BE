@@ -8,7 +8,6 @@ import cookieParser from 'cookie-parser';
 import * as routes from './routes';
 import handleErrors from './utils/error-handling/errorHandler';
 const app = express();
-
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: false, limit: '10mb' }));
 app.use(
@@ -25,13 +24,13 @@ app.use(cookieParser());
 app.use(helmet());
 app.get('/', (req, res) => res.send({ message: 'WORKING' }));
 
-app.use('/visitor', routes.visitorRoutes);
 app.use('/my-personal-details', routes.myPersonalDetailsRoutes);
 app.use('/my-work-experiences', routes.myWorkExperienceRoutes);
 app.use('/my-clients', routes.myClientRoutes);
 app.use('/my-client-projects', routes.myClientProjectsRoutes);
 app.use('/my-skills', routes.mySkillsRoutes);
 app.use('/my-contact-details', routes.myContactDetailsRoutes);
+app.use('/visitor', routes.visitorRoutes);
 
 // Error Handler
 app.use(handleErrors);

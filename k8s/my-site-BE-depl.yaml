@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-site-be-deployment
+spec:
+  selector:
+    matchLabels:
+      app: my-site-be
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: my-site-be
+    spec:
+      containers:
+        - name: my-site-be
+          image: ranarajput/my-site:backend
+          ports:
+            - containerPort: 3000
+          imagePullPolicy: Always
+          env:
+            - name: NODE_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: be-envs
+                  key: NODE_ENV
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: be-secrets
+                  key: JWT_SECRET
+            - name: MONGO_U
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: mongo-root-username
+            - name: MONGO_P
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: mongo-root-password
+            - name: MONGO_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: mongodb-configmap
+                  key: database_url
+      imagePullSecrets:
+            - name: myregistry
+          

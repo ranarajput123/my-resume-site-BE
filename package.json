@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./dist ",
+    "start": "node ./ ",
     "dev": "nodemon ./src/index.js --exec babel-node",
     "debug": "nodemon ./src/index.js --exec babel-node --inspect",
     "clean": "rm -rf dist",
@@ -30,11 +30,13 @@
     "request": "^2.88.0",
     "sequelize": "^6.6.2",
     "sequelize-auto": "^0.8.2",
-    "validator": "^13.6.0"
+    "validator": "^13.6.0",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.3",
+    "@babel/node": "^7.14.2",
     "@babel/preset-env": "^7.14.2",
     "@types/node": "^14.14.7",
     "@types/sequelize": "^4.28.9",
@@ -49,7 +51,6 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "morgan": "^1.10.0",
     "nodemon": "^1.19.4"
   },
   "keywords": [],

@@ -3,8 +3,8 @@ import { ApplicationError } from '../../error_handling/base';
 import getMongooseError from './mongoose-errorHandler';
 import { ReE } from '../response';
 
-export default function handleErrors(err, _req, res) {
-	// console.log(err);
+// eslint-disable-next-line no-unused-vars
+export default function handleErrors(err, _req, res,_next) {
 	if (err instanceof MongooseError) {
 		const { message, statusCode } = getMongooseError(err);
 		return ReE(res, message, null, statusCode);
