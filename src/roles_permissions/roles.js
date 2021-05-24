@@ -42,7 +42,7 @@ export const permissions = {
 		permissions: [allPermissions],
 	},
 	VISITOR: {
-		permissions: [getVisitor, updateVisitor, deleteVisitor],
+		permissions: [getVisitor, updateVisitor, deleteVisitor, getClientProject, getClients, getContacts, getPersonalDetails, getSkills, getWorkExperiences],
 	},
 };
 export const roles = {

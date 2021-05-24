@@ -14,8 +14,8 @@ const router = Router();
 
 router.get(
 	'/',
-	hasPermission(rolesAndPermissions.getPersonalDetails),
 	withAuth,
+	hasPermission(rolesAndPermissions.getPersonalDetails),
 	async (req, res, next) => {
 		try {
 			const myPDs = await getMyPersonalDetails();
