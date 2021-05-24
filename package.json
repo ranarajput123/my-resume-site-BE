@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./ ",
+    "start": "node ./dist/ ",
     "dev": "nodemon ./src/index.js --exec babel-node",
     "debug": "nodemon ./src/index.js --exec babel-node --inspect",
     "clean": "rm -rf dist",
