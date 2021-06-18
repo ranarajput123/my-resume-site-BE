@@ -26,7 +26,7 @@ class UnauthorizedError extends UserFacingError {
 		}
 	}
 	get statusCode() {
-		return RETURN_CODE.BAD_REQUEST;
+		return RETURN_CODE.UNAUTHORISED;
 	}
 }
 
@@ -56,4 +56,4 @@ class ForbiddenError extends UserFacingError {
 	}
 }
 
-export { ForbiddenError,BadRequestError, NotFoundError, UnauthorizedError };
+export { ForbiddenError, BadRequestError, NotFoundError, UnauthorizedError };

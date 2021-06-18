@@ -11,6 +11,7 @@ const allowedFields = [
 	'client_country',
 	'client_business',
 	'client_id',
+	'url'
 ];
 export const updateValidator = (req, _res, next) => {
 	haveNoMaliciousField(req.body, allowedFields);
