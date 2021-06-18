@@ -27,7 +27,7 @@ const isAlphanumeric = (val, key) => {
 	throw new BadRequestError(`Please provide correct value for ${key}`);
 };
 const isNotEmpty = (key, value) => {
-	if (!validator.isEmpty(value)) return true;
+	if (!value || !validator.isEmpty(value)) return true;
 	throw new BadRequestError(`Please provide ${key}`);
 };
 
