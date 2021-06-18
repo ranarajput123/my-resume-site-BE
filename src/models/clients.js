@@ -22,6 +22,10 @@ const ClientsSchema = new Schema(
 		},
 		url: {
 			type: String
+		},
+		logo: {
+			type: String,
+			require: true
 		}
 	},
 	{ timestamps: true }
