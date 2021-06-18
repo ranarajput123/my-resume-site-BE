@@ -7,7 +7,7 @@ import {
 
 const allowedFields = ['skill_name', 'description', 'domain', 'skill_id'];
 export const createValidator = (req, _res, next) => {
-	haveNoMaliciousField(req.body, allowedFields);
+	haveNoMaliciousField(Object.keys(req.body), allowedFields);
 	const { skill_name, domain, description } = req.body;
 	isNotEmpty('Skill_Name', skill_name);
 	isNotEmpty('Domain', domain);

@@ -37,13 +37,13 @@ export const updateValidator = (req, _res, next) => {
 };
 export const createValidator = (req, _res, next) => {
 	haveNoMaliciousField(Object.keys(req.body), allowedUpdateFields);
-	const { nationality, company_city, company_country, clients } = req.body;
-	isNotEmpty('Nationality', nationality);
+
+	const { skills_used, company_city, company_country, clients } = req.body;
 	isNotEmpty('Comapny City', company_city);
 	isNotEmpty('Company Country', company_country);
-	isAlphabets(nationality, 'Nationality');
 	isAlphabetsWithOptionalSpaces(company_country, 'Company Country');
 	isAlphabetsWithOptionalSpaces(company_city, 'Company City');
 	isObjectIDsArray(clients, 'Clients');
+	isObjectIDsArray(skills_used, 'Skills_used');
 	next();
 };

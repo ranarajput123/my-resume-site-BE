@@ -24,7 +24,7 @@ export const updateValidator = (req, _res, next) => {
 	next();
 };
 export const createValidator = (req, _res, next) => {
-	haveNoMaliciousField(req.body, allowedFields);
+	haveNoMaliciousField(Object.keys(req.body), allowedFields);
 	const { client_name, client_city, client_country } = req.body;
 	isNotEmpty('Client Name', client_name);
 	isNotEmpty('Client City', client_city);

@@ -20,12 +20,14 @@ const ClientProjectSchema = new Schema(
 			{
 				type: mongoose.Schema.Types.ObjectId,
 				ref: 'Skills',
+				require: true
 			},
 		],
 		technologies: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
 				ref: 'Skills',
+				require: true
 			},
 		],
 		responsibilities: [{ type: String, required: true }],

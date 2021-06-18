@@ -53,7 +53,7 @@ const isObjectId = (id) => {
 };
 const isObjectIDsArray = (objectIDsArray, key) => {
 	if (
-		!Array.isArray(objectIDsArray) ||
+		!Array.isArray(objectIDsArray) || !objectIDsArray.length ||
 		objectIDsArray.filter((objectID) => !isObjectId(objectID)).length
 	)
 		throw new BadRequestError(

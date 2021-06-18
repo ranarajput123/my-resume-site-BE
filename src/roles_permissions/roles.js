@@ -37,7 +37,7 @@ export const updateWorkExperience = 'UPDATE_WORK_EXPERIENCE';
 export const deleteWorkExperience = 'DELETE_WORK_EXPERIENCE';
 export const getWorkExperiences = 'GET_WORK_EXPERIENCES';
 
-export const permissions = {
+export const PERMISSIONS = {
 	ADMIN: {
 		permissions: [allPermissions],
 	},
@@ -45,7 +45,7 @@ export const permissions = {
 		permissions: [getVisitor, updateVisitor, deleteVisitor, getClientProject, getClients, getContacts, getPersonalDetails, getSkills, getWorkExperiences],
 	},
 };
-export const roles = {
+export const ROLES = {
 	ADMIN: 'ADMIN',
 	VISITOR: 'VISITOR',
 };

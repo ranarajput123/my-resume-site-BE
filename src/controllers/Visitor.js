@@ -6,7 +6,7 @@ import {
 	UnauthorizedError,
 } from '../error_handling/userFacingErrors';
 import jwt from 'jsonwebtoken';
-import { roles } from '../roles_permissions/roles';
+import { ROLES } from '../roles_permissions/roles';
 export const visitorSignUp = async (email, password, name, company) => {
 	/* Hashing Password to save in Database */
 	const salt = crypto.randomBytes(32);
@@ -34,7 +34,7 @@ export const visitorSignIn = async (email, password) => {
 		id: visitor._id,
 		email: visitor.email,
 		name: visitor.name,
-		role: roles.VISITOR
+		role: ROLES.VISITOR
 	};
 	// Store data in cookie for further requests->authorization
 	const token = storeCookieToken(visitorData);

@@ -44,7 +44,7 @@ router.patch(
 router.post(
 	'/',
 	withAuth,
-	hasPermission(rolesAndPermissions.createClient),
+	// hasPermission(rolesAndPermissions.createClient),
 	createValidator,
 	async (req, res, next) => {
 		try {

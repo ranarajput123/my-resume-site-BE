@@ -18,7 +18,10 @@ const ClientsSchema = new Schema(
 			type: String,
 		},
 		client_business: {
-			type:String
+			type: String
+		},
+		url: {
+			type: String
 		}
 	},
 	{ timestamps: true }

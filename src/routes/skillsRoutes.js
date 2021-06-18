@@ -25,13 +25,15 @@ router.patch('/', withAuth, hasPermission(rolesAndPermissions.updateSkill), upda
 	}
 });
 
-router.post('/', withAuth, hasPermission(rolesAndPermissions.createSkill), createValidator, async (req, res, next) => {
-	try {
-		const mySkill = await controllers.createMySkill(req.body);
-		return ReS(res, 'Sarmad Skill Created ', mySkill, RETURN_CODE.SUCCESS);
-	} catch (err) {
-		next(err);
-	}
-});
+router.post('/', withAuth,
+	// hasPermission(rolesAndPermissions.createSkill),
+	createValidator, async (req, res, next) => {
+		try {
+			const mySkill = await controllers.createMySkill(req.body);
+			return ReS(res, 'Sarmad Skill Created ', mySkill, RETURN_CODE.SUCCESS);
+		} catch (err) {
+			next(err);
+		}
+	});
 
 export default router;

@@ -6,7 +6,7 @@ import {
 	isAlphaNumericWithOptionalSpaces,
 	haveNoMaliciousField,
 } from './generalValidations';
-const allowedUpdateFields = ['name', 'company', 'email'];
+const allowedUpdateFields = ['name', 'company', 'email', 'password'];
 const signUpValidator = (req, res, next) => {
 	haveNoMaliciousField(Object.keys(req.body), [
 		...allowedUpdateFields,

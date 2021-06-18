@@ -6,7 +6,7 @@ import {
 	isURL,
 } from './generalValidations';
 
-const allowedFields = ['contact_type', 'contact_url', 'logo_url'];
+const allowedFields = ['contact_type', 'contact_url', 'logo_url','contact_id'];
 export const updateValidator = (req, _res, next) => {
 	haveNoMaliciousField(req.body, allowedFields);
 	const { contact_type, contact_url, logo_url, contact_id } = req.body;

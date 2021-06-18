@@ -6,11 +6,8 @@ export const ReS = (res, msg, data, code) => {
 		data,
 	});
 };
-export const ReE = (res, msg, data, code) => {
-	return res.status(code).json({
-		message: msg,
-		data,
-	});
+export const ReE = (res, msg, code) => {
+	return res.status(code).send(msg);
 };
 
 export const ReC = (res, type, token, httpOnly) => {
