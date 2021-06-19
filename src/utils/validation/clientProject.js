@@ -12,24 +12,24 @@ const allowedFields = [
 	'responsibilities',
 	'stack',
 	'client_project_id',
-	'technologies',
+	'other',
 	'description',
 ];
 export const updateValidator = (req, res, next) => {
 	haveNoMaliciousField(req.body, allowedFields);
-	const { career_project_id, client, role, stack, technologies } = req.body;
+	const { career_project_id, client, role, stack, other } = req.body;
 	isNotEmpty('Career Project Reference ID', career_project_id);
 	isObjectId(career_project_id);
 	if (client) isObjectId(client);
 	if (role) isAlphabetsWithOptionalSpaces(role, 'Role');
 	if (stack) isObjectIDsArray(stack, 'Stack Array');
-	if (technologies) isObjectIDsArray(technologies, 'Technologies Array');
+	if (other) isObjectIDsArray(other, 'Other Array');
 	next();
 };
 
 export const createValidator = (req, res, next) => {
 	haveNoMaliciousField(Object.keys(req.body), allowedFields);
-	const { client, role, stack, technologies } = req.body;
+	const { client, role, stack, other } = req.body;
 	isNotEmpty('Client Reference ID', client);
 	isObjectId(client);
 	isNotEmpty('Role', role);
@@ -37,6 +37,6 @@ export const createValidator = (req, res, next) => {
 	// isNotEmpty('Stack Array', stack);
 	isObjectIDsArray(stack, 'Stack Array');
 	// isNotEmpty('Technologies', technologies);
-	isObjectIDsArray(technologies, 'Technologies');
+	isObjectIDsArray(other, 'Other');
 	next();
 };

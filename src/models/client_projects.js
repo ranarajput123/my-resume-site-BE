@@ -23,7 +23,7 @@ const ClientProjectSchema = new Schema(
 				require: true
 			},
 		],
-		technologies: [
+		other: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
 				ref: 'Skills',

@@ -2,7 +2,7 @@ import { NotFoundError } from '../error_handling/userFacingErrors';
 import _My_Client_Projects from '../models/client_projects';
 
 export const getMyClientProjects = async () => {
-	const myClientProjects = await _My_Client_Projects.find().populate(['client', 'stack', 'technologies']);
+	const myClientProjects = await _My_Client_Projects.find().populate(['client', 'stack', 'other']);
 	if (!myClientProjects)
 		throw new NotFoundError(
 			'Could Not Find The Client Projects I Have Worked On Data At The Moment'
