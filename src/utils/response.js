@@ -14,5 +14,5 @@ export const ReC = (res, type, token, httpOnly) => {
 	return res.cookie(type, token, { httpOnly }).sendStatus(RETURN_CODE.SUCCESS);
 };
 export const ReC_Continue = (res, type, token, httpOnly) => {
-	return res.cookie(type, token, { httpOnly, sameSite: 'None' });
+	return res.cookie(type, token, { httpOnly, sameSite: 'None', secure: true });
 };
