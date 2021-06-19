@@ -23,8 +23,11 @@ const MyWorkExperienceSchema = new Schema(
 			type: Date,
 		},
 		to: {
-			required: true,
-			type: Date || 'current',
+			type: Date,
+		},
+		current: {
+			type: Boolean,
+			default: false
 		},
 		responsibilities: {
 			required: true,
