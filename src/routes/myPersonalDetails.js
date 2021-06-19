@@ -53,7 +53,7 @@ router.patch(
 router.post(
 	'/',
 	withAuth,
-	hasPermission(rolesAndPermissions.createPersonalDetails),
+	// hasPermission(rolesAndPermissions.createPersonalDetails),
 	async (req, res, next) => {
 		try {
 			const myPersonalDetails = await createMyPersonalDetails(req.body);
