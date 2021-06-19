@@ -24,7 +24,7 @@ const MyWorkExperienceSchema = new Schema(
 		},
 		to: {
 			required: true,
-			type: Date,
+			type: Date || 'current',
 		},
 		responsibilities: {
 			required: true,
