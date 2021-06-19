@@ -14,6 +14,7 @@ const allowedUpdateFields = [
 	'clients',
 	'from',
 	'to',
+	'current',
 	'responsibilities',
 	'role',
 	'skills_used',
