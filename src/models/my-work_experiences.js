@@ -38,6 +38,14 @@ const MyWorkExperienceSchema = new Schema(
 			type: String,
 		},
 		skills_used: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Skills' }],
+		url: {
+			required: true,
+			type: String
+		},
+		logo: {
+			required: true,
+			type: String
+		}
 	},
 	{ timestamps: true }
 );

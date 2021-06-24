@@ -11,8 +11,9 @@ const {
 } = process.env;
 
 // const url = MONGO_URL ? `mongodb://${MONGO_U}:${MONGO_P}@${MONGO_URL}:27017/react?authSource=admin` : 'mongodb://localhost:27017/react'; // FOR AWS EKS 
-const url = NODE_ENV === 'development' ?
-	'mongodb://localhost:27017/react' :
+const url =
+	// NODE_ENV === 'development' ?
+	// 'mongodb://localhost:27017/react' :
 	`mongodb+srv://${DATABASE_USER}:${DATABASE_PASS}@my-site-db-cluster0.rxni0.mongodb.net/${DEFAULT_DATABASE_NAME}?retryWrites=true&w=majority`;
 (async () => {
 	try {

@@ -26,7 +26,7 @@ router.patch('/', withAuth, hasPermission(rolesAndPermissions.updateSkill), upda
 });
 
 router.post('/', withAuth,
-	// hasPermission(rolesAndPermissions.createSkill),
+	hasPermission(rolesAndPermissions.createSkill),
 	createValidator, async (req, res, next) => {
 		try {
 			const mySkill = await controllers.createMySkill(req.body);

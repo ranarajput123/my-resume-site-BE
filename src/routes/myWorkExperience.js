@@ -52,7 +52,7 @@ router.patch(
 router.post(
 	'/',
 	withAuth,
-	// hasPermission(rolesAndPermissions.createWorkExperience),
+	hasPermission(rolesAndPermissions.createWorkExperience),
 	createValidator,
 	async (req, res, next) => {
 		try {
